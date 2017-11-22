@@ -1,5 +1,5 @@
-package ash.core
-{
+package ash.core {
+	import flash.utils.getTimer;
 	import ash.signals.Signal0;
 	import flash.utils.Dictionary;
 
@@ -278,11 +278,29 @@ package ash.core
 		 */
 		public function update( time : Number ) : void
 		{
+			//var beforeTime : int = getTimer();
+			
 			updating = true;
-			for( var system : System = systemList.head; system; system = system.next )
+			
+			try
 			{
-				system.update( time );
+				for( var system : System = systemList.head; system; system = system.next )
+				{
+					system.update( time );
+				}
 			}
+			catch (err:Error)
+			{
+			}
+			
+			/*
+			var diff:int = getTimer() - beforeTime;
+			
+			if(diff > 0)
+				trace("Engine.update took: " + diff);
+				 * 
+				 */
+			
 			updating = false;
 			updateComplete.dispatch();
 		}

@@ -15,8 +15,6 @@ package ash.io.objectcodecs
 				values[ values.length ] = codecManager.encodeObject( value );
 			}
 			return { type:type, values:values };
-
-			return null;
 		}
 
 		public function decode( object : Object, codecManager : CodecManager ) : Object
